@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/c/Users/45098/CLionProjects/project2/src/main.cpp" "CMakeFiles/project2.dir/src/main.cpp.o" "gcc" "CMakeFiles/project2.dir/src/main.cpp.o.d"
-  "/mnt/c/Users/45098/CLionProjects/project2/src/sources/functions.cpp" "CMakeFiles/project2.dir/src/sources/functions.cpp.o" "gcc" "CMakeFiles/project2.dir/src/sources/functions.cpp.o.d"
-  "/mnt/c/Users/45098/CLionProjects/project2/src/sources/zh_number.cpp" "CMakeFiles/project2.dir/src/sources/zh_number.cpp.o" "gcc" "CMakeFiles/project2.dir/src/sources/zh_number.cpp.o.d"
+  "/home/zhzhzh/ClionProjects/project2/src/main.cpp" "CMakeFiles/project2.dir/src/main.cpp.o" "gcc" "CMakeFiles/project2.dir/src/main.cpp.o.d"
+  "/home/zhzhzh/ClionProjects/project2/src/sources/functions.cpp" "CMakeFiles/project2.dir/src/sources/functions.cpp.o" "gcc" "CMakeFiles/project2.dir/src/sources/functions.cpp.o.d"
+  "/home/zhzhzh/ClionProjects/project2/src/sources/zh_number.cpp" "CMakeFiles/project2.dir/src/sources/zh_number.cpp.o" "gcc" "CMakeFiles/project2.dir/src/sources/zh_number.cpp.o.d"
   )
 
 # Targets to which this target links.
