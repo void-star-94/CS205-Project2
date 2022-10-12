@@ -5,17 +5,161 @@
 #include <algorithm>
 #include <stdexcept>
 #include <complex>
+#include "functions.h"
 
 
-const zh_number zero = {POSITIVE, Base::Decimal,
-                        {}, 0};
-const zh_number one = {POSITIVE, Base::Decimal,
-                       {1}, 0};
-const zh_number negative_one = {NEGATIVE, Base::Decimal,
-                                {1}, 0};
+zh_number zero = {POSITIVE,
+                  std::vector<uint8_t>(), 0};
+zh_number one = {POSITIVE,
+                 std::vector<uint8_t>{1}, 0};
+zh_number negative_one = {NEGATIVE,
+                          std::vector<uint8_t>{1}, 0};
 
+inline bool abs_less(const zh_number &a, const zh_number &b) {
+    uint64_t ll = a.nums.size() + a.power, rl = b.nums.size() + b.power;
+    if (ll != rl)return ll <= rl;
+    auto it_l = a.nums.rbegin(), it_r = b.nums.rbegin();
+    for (; it_l != a.nums.rend() && it_r != b.nums.rend(); ++it_l, ++it_r) {
+        if (*it_l != *it_r) {
+            return *it_l < *it_r;
+        }
+    }
+    return it_l == a.nums.rend();
+}
 
-//
+zh_number::zh_number() {
+    *this = zero;
+}
+
+zh_number::zh_number(uint64_t num, bool s, int64_t power_) : sign(s), power(power_) {
+    if (num == 0) {
+        *this = zero;
+    } else {
+        nums.reserve(precision);
+        while (num) {
+            nums.push_back(num % 10);
+            num /= 10;
+        }
+    }
+    squeeze();
+}
+
+std::strong_ordering zh_number::operator<=>(const zh_number &other) const {
+    if (sign xor other.sign)
+        return sign ? std::strong_ordering::greater : std::strong_ordering::less;
+    uint64_t ll = nums.size() + power, rl = other.nums.size() + other.power;
+    if (ll != rl)return ll <=> rl;
+    auto &v = other.nums;
+    auto it_l = nums.rbegin(), it_r = v.rbegin();
+    for (; it_l != nums.rend() && it_r != v.rend(); ++it_l, ++it_r) {
+        if (*it_l != *it_r) {
+            return sign ? *it_l <=> *it_r : *it_r <=> *it_l;
+        }
+    }
+    if (it_l == nums.rend() && it_r == v.rend())
+        return std::strong_ordering::equal;
+    if (it_l == nums.rend())
+        return sign ? std::strong_ordering::less : std::strong_ordering::greater;
+    return sign ? std::strong_ordering::greater : std::strong_ordering::less;
+}
+
+bool zh_number::operator==(const zh_number &other) const {
+    if (sign xor other.sign)return false;
+    if ((power != other.power) || (nums.size() != other.nums.size()))return false;
+    auto &v = other.nums;
+    auto it_l = nums.begin(), it_r = v.begin();
+    for (; it_l != nums.end(); ++it_l, ++it_r) {
+        if (*it_l != *it_r) {
+            return false;
+        }
+    }
+    return true;
+}
+
+std::vector<uint8_t> operator+(const std::vector<uint8_t> &a, const std::vector<uint8_t> &b) {
+    if (a.empty())return a;
+    if (b.empty())return b;
+    const std::vector<uint8_t> &a_ = a.size() > b.size() ? a : b;
+    const std::vector<uint8_t> &b_ = a.size() > b.size() ? b : a;
+    std::vector<uint8_t> re;
+    re.reserve(zh_number::precision);
+    uint8_t carry = 0, sum;
+    for (size_t i = 0; i < a_.size(); ++i) {
+        sum = a_[i] + carry + (i < b_.size()) * b_[i];
+        carry = sum > 10 ? 1 : 0;
+        re.push_back(carry ? sum - 10 : sum);
+    }
+    if (carry)
+        re.push_back(1);
+    return re;
+}
+
+std::vector<uint8_t> operator-(const std::vector<uint8_t> &l, const std::vector<uint8_t> &s) {// l>s
+    if (s.empty() || l.empty())return l;
+    uint8_t borrow = 0, borrow_;
+    std::vector<uint8_t> re;
+    re.reserve(zh_number::precision);
+    for (size_t i = 0; i < l.size(); ++i) {
+        borrow_ = borrow;
+        uint8_t tmp = (i < s.size()) * s[i];
+        borrow = (borrow + tmp > l[i]);
+        re.push_back(borrow * 10 + l[i] - borrow_ - tmp);
+    }
+    if (*re.rbegin() == 0)re.erase(re.end() - 1);
+    return re;
+}
+
+std::ostream &operator<<(std::ostream &os, const std::vector<uint8_t> &v) {
+    for (auto it = v.rbegin(); it != v.rend(); ++it) {/*NOLINT*/
+        os << int(*it);
+    }
+    return os;
+}
+
+zh_number zh_number::operator+(const zh_number &other_) const {
+    if (isZero())return other_;
+    if (other_.isZero())return *this;
+    zh_number other = other_, tmp_ = *this;
+    int64_t tmp = std::abs(power - other_.power);
+    if (power < other_.power) {
+        other.pad_zeros(tmp);
+    } else if (power > other_.power) {
+        tmp_.pad_zeros(tmp);
+    }
+    zh_number re;
+    if (tmp_.degenerate() && other.degenerate()) {
+        int64_t num1 = tmp_.to_int(), num2 = other.to_int();
+        int64_t num3 = num1 + num2;
+        if (num3 == 0)return zero;
+        re = num3 > 0 ? zh_number(num3, POSITIVE, other.power)
+                      : zh_number(-num3, NEGATIVE, other.power);
+        re.squeeze();
+        return re;
+    }
+
+    bool b = abs_less(*this, other);
+    re.power = tmp_.power;
+    if (sign xor other.sign) {
+        re.sign = b ? other.sign : sign;
+        re.nums = b ? other.nums - tmp_.nums : tmp_.nums - other.nums;
+        auto it = std::find_if(re.nums.rbegin(), re.nums.rend(), [](uint8_t i) { return i != 0; });
+        int64_t dis = std::distance(re.nums.rbegin(), it);
+        re.nums.erase(re.nums.begin() + int64_t(re.nums.size() - dis), re.nums.end());
+    } else {
+        re.sign = sign;
+        re.nums = tmp_.nums + other.nums;
+    }
+    re.squeeze();
+    return re;
+}
+
+zh_number zh_number::operator-(const zh_number &other) const {
+    other.sign = !other.sign;
+    auto re = *this + other;
+    other.sign = !other.sign;
+    return re;
+}
+
 size_t next_pow2(size_t n) {
     if (n == 0) {
         return 0;
@@ -33,7 +177,7 @@ constexpr bool is_pow2(const unsigned n) {
     return n && !(n & (n - 1));
 }
 
-void fft(std::vector<std::complex<double>> &x) {
+void fft(std::vector<std::complex<double>> &x) {/*NOLINT*/
     static constexpr double pi = 3.1415926535897932384626433832795;
 
     // in the event that an array was passed in with a non-power-of-two length.
@@ -155,7 +299,6 @@ zh_number mul_strassen(const zh_number &a, const zh_number &b) {
 
     zh_number ret;
     ret.nums.reserve(inverses.size());
-    ret.base = a.base;
     ret.sign = !(a.sign xor b.sign);
 
     for (size_t i = 0, c = 0; i < inverses.size(); ++i) {
@@ -165,10 +308,10 @@ zh_number mul_strassen(const zh_number &a, const zh_number &b) {
         // round to an integer
         const auto ci = (uint64_t) ((double) c + std::floor(x + 0.5));
 
-        ret.nums.push_back(ci % int(ret.base));
+        ret.nums.push_back(ci % 10);
 
         // carry propagation
-        c = (ci / int(ret.base));
+        c = (ci / 10);
     }
 
     // trim trailing zeroes from the most-significant digits
@@ -187,133 +330,178 @@ zh_number mul_strassen(const zh_number &a, const zh_number &b) {
     return ret;
 }
 
-std::vector<uint8_t> operator+(const std::vector<uint8_t> &a, const std::vector<uint8_t> &b) {
-    if (a.empty())return a;
-    if (b.empty())return b;
-    const std::vector<uint8_t> &a_ = a.size() > b.size() ? a : b;
-    const std::vector<uint8_t> &b_ = a.size() > b.size() ? b : a;
-    std::vector<uint8_t> re;
-    re.reserve(zh_number::precision);
-    uint8_t carry = 0, sum;
-    for (size_t i = 0; i < a_.size(); ++i) {
-        sum = a_[i] + carry + (i < b_.size()) * b_[i];
-        carry = sum > 10 ? 1 : 0;
-        re.push_back(carry ? sum - 10 : sum);
-    }
-    if (carry)
-        re.push_back(1);
-    return re;
-}
-
-std::vector<uint8_t> operator-(const std::vector<uint8_t> &l, const std::vector<uint8_t> &s) {// l>s
-    if (s.empty() || l.empty())return l;
-    uint8_t borrow = 0, borrow_;
-    std::vector<uint8_t> re;
-    re.reserve(zh_number::precision);
-    for (size_t i = 0; i < l.size(); ++i) {
-        borrow_ = borrow;
-        uint8_t tmp = (i < s.size()) * s[i];
-        borrow = (borrow + tmp > l[i]);
-        re.push_back(borrow * 10 + l[i] - borrow_ - tmp);
-    }
-    return re;
-}
-
-std::ostream &operator<<(std::ostream &os, std::vector<uint8_t> &v) {
-    for (auto it = v.rbegin(); it != v.rend(); ++it) {/*NOLINT*/
-        os << int(*it);
-    }
-    return os;
-}
-
-zh_number zh_number::operator+(zh_number &other) {
-    squeeze();
-    other.squeeze();
-    if (isZero())return other;
-    if (other.isZero())return *this;
-    int64_t tmp = std::abs(power - other.power);
-    if (power < other.power) {
-        other.pad_zeros(tmp);
-    } else if (power > other.power) {
-        pad_zeros(tmp);
-    }
+zh_number zh_number::operator*(const zh_number &other) const {
+    if (isZero() || other.isZero())return zero;
     zh_number re;
-    if (sign xor other.sign) {
-        re.sign = (*this < other) ? other.sign : sign;
-        re.nums = re.sign ? nums - other.nums : other.nums - nums;
-    } else {
-        re.sign = sign;
-        re.nums = nums + other.nums;
+    if (*this == one || *this == negative_one) {
+        re = other;
+        re.sign = !(sign xor other.sign);
+        return re;
     }
-    re.power = power;
-    re.squeeze();
-    squeeze();
-    other.squeeze();
-    return re;
-}
-
-zh_number zh_number::operator-(zh_number &other) {
-    other.squeeze();
-    squeeze();
-    other.sign = !other.sign;
-    auto re = *this + other;
-    other.sign = !other.sign;
-    return re;
-}
-
-zh_number zh_number::operator*(zh_number &other) {
-    squeeze();
-    other.squeeze();
+    if (other == one || other == negative_one) {
+        re = *this;
+        re.sign = !(sign xor other.sign);
+        return re;
+    }
+    if (is_pow_10()) {
+        re.sign = !(sign xor other.sign);
+        re.nums = other.nums;
+        re.power = power + other.power;
+        return re;
+    }
+    if (other.is_pow_10()) {
+        re.sign = !(sign xor other.sign);
+        re.nums = nums;
+        re.power = power + other.power;
+        return re;
+    }
+    if (degenerate() && other.degenerate()) {
+        int64_t num1 = to_int(), num2 = other.to_int();
+        int64_t num3 = num1 * num2;
+        re = num3 > 0 ? zh_number(num3, POSITIVE, power + other.power)
+                      : zh_number(-num3, NEGATIVE, power + other.power);
+        return re;
+    }
     return mul_strassen(*this, other);
 }
 
-zh_number zh_number::operator/(zh_number &other) {
-    return one;
+zh_number zh_number::operator/(const zh_number &other) const {//check before use
+    if (isZero())return zero;
+    zh_number re;
+    if (other == one || other == negative_one) {
+        re = *this;
+        re.sign = !(sign xor other.sign);
+        re.squeeze();
+        return re;
+    }
+    if (other.is_pow_10()) {
+        re.nums = nums;
+        re.sign = !(sign xor other.sign);
+        re.power = power - other.power;
+        re.squeeze();
+        return re;
+    }
+    int64_t pre = int64_t(std::max({precision, nums.size() * 2, other.nums.size() * 2}));
+    int64_t pad = 0;
+    if ((nums.size() < other.nums.size()) || (nums.size() - other.nums.size() < pre)) {
+        pad = int64_t(pre - nums.size() + other.nums.size());
+    }
+    zh_number a, b;
+    a.nums = nums;
+    b.nums = other.nums;
+    a.power = pad;
+    re.sign = !(sign xor other.sign);
+    re.nums.reserve(pre);
+    int64_t tmp_ = 0;
+    for (int64_t i = 0; i < pad; ++i, ++tmp_) {
+        b.power = pad - tmp_;
+        if (b == a) {
+            re.nums.push_back(1);
+            std::reverse(re.nums.begin(), re.nums.end());
+            return re;
+        }
+        if (b > a) {
+            if (i) {
+                re.nums.push_back(0);
+                continue;
+            }
+            while (b > a) {
+                tmp_++;
+                b.power = pad - tmp_;
+            }
+        }
+        uint8_t tmp = 0;
+        while (b < a) {
+            a -= b;
+            tmp++;
+            a.squeeze();
+        }
+        re.nums.push_back(tmp);
+        if (a.isZero()) {
+            std::reverse(re.nums.begin(), re.nums.end());
+            return re;
+        }
+    }
+    std::reverse(re.nums.begin(), re.nums.end());
+    re.power = power - other.power - tmp_ + 1;
+    re.squeeze();
+    return re;
 }
 
-std::pair<zh_number, zh_number> zh_number::operator%(zh_number &other) {
-    return {};
+std::pair<zh_number, zh_number> zh_number::operator%(const zh_number &other) const {//check before use
+    if (*this < other)return {zero, *this};
+    zh_number l = *this / other;
+    l.squeeze();
+    std::cout << l * other << "\n";
+    zh_number r = (*this) - (l * other);
+    std::cout << r << "\n";
+    r.squeeze();
+    return {l, r};
 }
 
-bool zh_number::isZero() {
-    squeeze();
-    return nums.empty();
-}
-
-void zh_number::squeeze() {
-    if (base != Base::Decimal)return;
-    if (nums.empty()) {
-        power = 0;
-        sign = POSITIVE;
+void zh_number::operator+=(const zh_number &other) {
+    if (isZero()) {
+        *this = other;
         return;
     }
-    if (nums[0] != 0)return;
-    auto it = std::find_if(nums.begin(), nums.end(), [](uint8_t i) { return i != 0; });
-    if (it == nums.end()) {
+    if (other.isZero())return;
+    *this = *this + other;
+    squeeze();
+}
+
+void zh_number::operator-=(const zh_number &other) {
+    other.sign = !other.sign;
+    *this += other;
+    other.sign = !other.sign;
+    squeeze();
+}
+
+void zh_number::operator*=(const zh_number &other) {
+    if (isZero())return;
+    if (other.isZero()) {
         *this = zero;
         return;
     }
-    int64_t dis = std::distance(nums.begin(), it);
-    nums.erase(nums.begin(), it);
-    power += dis;
-}
-
-void zh_number::pad_zeros(const int64_t count) {
-    if (count == 0)return;
+    *this = *this * other;
     squeeze();
-    std::vector<uint8_t> tmp(count, 0);
-    nums.insert(nums.begin(), tmp.begin(), tmp.end());
-    power -= count;
 }
 
-std::ostream &operator<<(std::ostream &os, zh_number &n) {
-    n.squeeze();
+void zh_number::operator/=(const zh_number &other) {//check before use
+    *this = *this / other;
+    squeeze();
+}
+
+void zh_number::operator%=(const zh_number &other) {//check before use
+    *this = (*this % other).second;
+    squeeze();
+}
+
+//int64_t zh_number::to_int() {
+//    squeeze();
+//    std::stringstream ss;
+//    if (!sign)ss << '-';
+//    for (auto it = nums.rbegin(); it != nums.rend(); ++it) {/*NOLINT*/
+//        ss << int(*it);
+//    }
+//    for (int i = 0; i < power; ++i) {
+//        ss << 0;
+//    }
+//    return std::stoll(ss.str());
+zh_number &zh_number::operator++() {
+    *this += one;
+    squeeze();
+    return *this;
+}
+
+zh_number &zh_number::operator--() {
+    *this -= one;
+    squeeze();
+    return *this;
+}
+
+
+std::ostream &operator<<(std::ostream &os, const zh_number &n) {
     if (!n.sign)os << '-';
-    if (n.base != Base::Decimal) {
-        os << prefix(n.base);
-        os << n.nums;
-        return os;
-    }
     if (n.isZero()) {
         if (zh_number::tag == Print_Tag::Fractional)
             os << "0.0";
@@ -324,11 +512,18 @@ std::ostream &operator<<(std::ostream &os, zh_number &n) {
     auto &v = n.nums;
     switch (zh_number::tag) {
         case Print_Tag::Scientific:
+            if (v.size() == 1) {
+                os << int(v[0]);
+                if (n.power != 0)
+                    os << 'e' << n.power;
+                return os;
+            }
             os << int(*v.rbegin()) << '.';
             for (auto it = v.rbegin() + 1; it != v.rend(); ++it) {
                 os << int(*it);
             }
-            os << 'e' << n.power + v.size() - 1;
+            if (int64_t(n.power + v.size() - 1) != 0)
+                os << 'e' << int64_t(n.power + v.size() - 1);
             break;
         case Print_Tag::Fractional:
             if (n.power >= 0) {
@@ -376,68 +571,65 @@ std::ostream &operator<<(std::ostream &os, zh_number &n) {
     return os;
 }
 
-std::strong_ordering zh_number::operator<=>(zh_number &other) {
-    if (sign xor other.sign)
-        return sign ? std::strong_ordering::greater : std::strong_ordering::less;
-    squeeze();
-    other.squeeze();
-    uint64_t ll = nums.size() + power, rl = other.nums.size() + other.power;
-    if (ll != rl)return ll <=> rl;
-    auto &v = other.nums;
-    auto it_l = nums.rbegin(), it_r = v.rbegin();
-    for (; it_l != nums.rend() && it_r != v.rend(); ++it_l, ++it_r) {
-        if (*it_l != *it_r) {
-            return sign ? *it_l <=> *it_r : *it_r <=> *it_l;
-        }
-    }
-    if (it_l == nums.rend() && it_r == v.rend())
-        return std::strong_ordering::equal;
-    if (it_l == nums.rend())
-        return sign ? std::strong_ordering::less : std::strong_ordering::greater;
-    return sign ? std::strong_ordering::greater : std::strong_ordering::less;
+bool zh_number::isZero() const {
+    return nums.empty();
 }
 
-bool zh_number::operator==(zh_number &other) {
-    if (sign xor other.sign)return false;
-    squeeze();
-    other.squeeze();
-    if ((power != other.power) || (nums.size() != other.nums.size()))return false;
-    auto &v = other.nums;
-    auto it_l = nums.begin(), it_r = v.begin();
-    for (; it_l != nums.end(); ++it_l, ++it_r) {
-        if (*it_l != *it_r) {
-            return false;
-        }
-    }
-    return true;
-}
-
-void zh_number::operator+=(zh_number &other) {
-    squeeze();
-    other.squeeze();
-    if (isZero()) {
-        *this = other;
+void zh_number::squeeze() {
+    if (nums.empty()) {
+        power = 0;
+        sign = POSITIVE;
         return;
     }
-    if (other.isZero())return;
-    int64_t tmp = std::abs(power - other.power);
-    if (power < other.power) {
-        other.pad_zeros(tmp);
-    } else if (power > other.power) {
-        pad_zeros(tmp);
+    if (nums[0] != 0)return;
+    auto it = std::find_if(nums.begin(), nums.end(), [](uint8_t i) { return i != 0; });
+    if (it == nums.end()) {
+        *this = zero;
+        return;
     }
-    nums = nums + other.nums;
-    squeeze();
-    other.squeeze();
+    int64_t dis = std::distance(nums.begin(), it);
+    nums.erase(nums.begin(), it);
+    power += dis;
 }
 
-void zh_number::operator-=(zh_number &other) {
+void zh_number::pad_zeros(const int64_t count) {
+    if (count <= 0)return;
     squeeze();
-    other.squeeze();
-    other.sign = !other.sign;
-    *this += other;
-    other.sign = !other.sign;
+    std::vector<uint8_t> tmp(count, 0);
+    nums.insert(nums.begin(), tmp.begin(), tmp.end());
+    power -= count;
 }
 
+/*
+bool zh_number::degenerate() {
+    squeeze();
+    if (power < 0)return false;
+    uint64_t l = nums.size() + power;
+    if (l > 10)return false;
+    if (l < 10)return true;
+    return *nums.rbegin() < 2;
+}
+*/
+bool zh_number::degenerate() const {
+    uint64_t l = nums.size();
+    if (l > 10)return false;
+    if (l < 10)return true;
+    return *nums.rbegin() < 2;
+}
 
+//}
+
+int64_t zh_number::to_int() const {
+    std::stringstream ss;
+    if (!sign)ss << '-';
+    for (auto it = nums.rbegin(); it != nums.rend(); ++it) {/*NOLINT*/
+        ss << int(*it);
+    }
+    return std::stoll(ss.str());
+}
+
+bool zh_number::is_pow_10() const {
+    if (nums.size() != 1)return false;
+    return nums[0] == 1;
+}
 

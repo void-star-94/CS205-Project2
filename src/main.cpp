@@ -1,20 +1,22 @@
 #include "zh_number.h"
+#include <cstdlib>
+#include <algorithm>
 
-uint64_t zh_number::precision = 128;
+uint64_t zh_number::precision = 32;
 Print_Tag zh_number::tag = Print_Tag::Scientific;
 
 
 int main() {
-    zh_number a = {{POSITIVE, {2, 5, 6}}, 15};
-    zh_number b = {{POSITIVE, {7, 3, 9}}, 15};
-    zh_number z = {{POSITIVE, {}},
-                   0};
-    zh_number zh = {{POSITIVE, {}},
-                    5};
-    zh_number re = a * b;
+    uint64_t tmp = 114514;
 //    zh_number::tag = Print_Tag::Decimal;
-    std::cout << (re) << "\n";
-    std::cout << "------------------------\n";
+    zh_number a(000);
+    zh_number b(1919810);
+    zh_number re = a / b;
+    re.squeeze();
+//    a -= b;
+    std::cout << (b % a).first;
+    std::cout << "\n------------------------\n";
+    std::cout << (b / a);
 
 
     return 0;

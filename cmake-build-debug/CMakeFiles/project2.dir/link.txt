@@ -1,1 +1,0 @@
-/usr/bin/g++ -g CMakeFiles/project2.dir/src/main.cpp.o CMakeFiles/project2.dir/src/sources/zh_number.cpp.o -o project2 
