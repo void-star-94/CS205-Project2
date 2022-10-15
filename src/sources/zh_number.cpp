@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <complex>
-#include "functions.h"
+//#include "functions.h"
 
 
 zh_number zero = {POSITIVE,
