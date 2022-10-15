@@ -1,4 +1,4 @@
-C:\Windows\system32\wsl.exe --distribution Ubuntu --exec /usr/bin/zsh -c "export CMAKE_COLOR_DIAGNOSTICS=ON && export CLION_IDE=TRUE && export JETBRAINS_IDE=TRUE && cd /mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug && /usr/local/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/bin/gcc '-DCMAKE_CXX_COMPILER=/usr/bin/g++' -G 'CodeBlocks - Unix Makefiles' -S /mnt/c/Users/45098/CLionProjects/project2 -B /mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug"
+C:\Windows\system32\wsl.exe --distribution Ubuntu --exec /usr/bin/zsh -c "export CMAKE_COLOR_DIAGNOSTICS=ON && export CLION_IDE=TRUE && export JETBRAINS_IDE=TRUE && cd /home/void-star/CLionProjects/project2/cmake-build-debug && /usr/local/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/bin/gcc '-DCMAKE_CXX_COMPILER=/usr/bin/g++' -G 'CodeBlocks - Unix Makefiles' -S /home/void-star/CLionProjects/project2 -B /home/void-star/CLionProjects/project2/cmake-build-debug"
 -- The C compiler identification is GNU 13.0.0
 -- The CXX compiler identification is GNU 13.0.0
 -- Detecting C compiler ABI info
@@ -13,4 +13,4 @@ C:\Windows\system32\wsl.exe --distribution Ubuntu --exec /usr/bin/zsh -c "export
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug
+-- Build files have been written to: /home/void-star/CLionProjects/project2/cmake-build-debug

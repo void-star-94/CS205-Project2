@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/mnt/c/Users/45098/CLionProjects/project2/src/headers
+CXX_INCLUDES = -I/home/void-star/CLionProjects/project2/src/headers
 
 CXX_FLAGS =  -lpthread -lncurses -g -fdiagnostics-color=always -std=gnu++20
 

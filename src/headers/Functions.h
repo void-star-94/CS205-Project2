@@ -1,5 +1,5 @@
 //
-// Created by 45098 on 2022/10/12.
+// Created by void-star on 2022/10/12.
 //
 
 #ifndef PROJECT2_FUNCTIONS_H

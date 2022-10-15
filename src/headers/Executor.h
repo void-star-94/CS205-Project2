@@ -7,11 +7,11 @@
 
 #include "Defines.h"
 
-Package get_input();
+Status get_input();
 
-void check_block(Block &blk);
+bool process_input(Status &);
 
-void process_block(Block &blk);
+void print_error(Status &);
 
 
 #endif //PROJECT2_EXECUTOR_H
