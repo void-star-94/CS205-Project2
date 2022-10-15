@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/bin/cmake -E rm -f
+RM = /usr/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/45098/CLionProjects/project2
+CMAKE_SOURCE_DIR = /home/zhzhzh/ClionProjects/project2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug
+CMAKE_BINARY_DIR = /home/zhzhzh/ClionProjects/project2/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/local/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/CMakeFiles /mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhzhzh/ClionProjects/project2/cmake-build-debug/CMakeFiles /home/zhzhzh/ClionProjects/project2/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhzhzh/ClionProjects/project2/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -153,53 +153,77 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/sources/functions.o: src/sources/functions.cpp.o
-.PHONY : src/sources/functions.o
+src/sources/Executor.o: src/sources/Executor.cpp.o
+.PHONY : src/sources/Executor.o
 
 # target to build an object file
-src/sources/functions.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/functions.cpp.o
-.PHONY : src/sources/functions.cpp.o
+src/sources/Executor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/Executor.cpp.o
+.PHONY : src/sources/Executor.cpp.o
 
-src/sources/functions.i: src/sources/functions.cpp.i
-.PHONY : src/sources/functions.i
+src/sources/Executor.i: src/sources/Executor.cpp.i
+.PHONY : src/sources/Executor.i
 
 # target to preprocess a source file
-src/sources/functions.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/functions.cpp.i
-.PHONY : src/sources/functions.cpp.i
+src/sources/Executor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/Executor.cpp.i
+.PHONY : src/sources/Executor.cpp.i
 
-src/sources/functions.s: src/sources/functions.cpp.s
-.PHONY : src/sources/functions.s
+src/sources/Executor.s: src/sources/Executor.cpp.s
+.PHONY : src/sources/Executor.s
 
 # target to generate assembly for a file
-src/sources/functions.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/functions.cpp.s
-.PHONY : src/sources/functions.cpp.s
+src/sources/Executor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/Executor.cpp.s
+.PHONY : src/sources/Executor.cpp.s
 
-src/sources/zh_number.o: src/sources/zh_number.cpp.o
-.PHONY : src/sources/zh_number.o
+src/sources/Functions.o: src/sources/Functions.cpp.o
+.PHONY : src/sources/Functions.o
 
 # target to build an object file
-src/sources/zh_number.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/zh_number.cpp.o
-.PHONY : src/sources/zh_number.cpp.o
+src/sources/Functions.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/Functions.cpp.o
+.PHONY : src/sources/Functions.cpp.o
 
-src/sources/zh_number.i: src/sources/zh_number.cpp.i
-.PHONY : src/sources/zh_number.i
+src/sources/Functions.i: src/sources/Functions.cpp.i
+.PHONY : src/sources/Functions.i
 
 # target to preprocess a source file
-src/sources/zh_number.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/zh_number.cpp.i
-.PHONY : src/sources/zh_number.cpp.i
+src/sources/Functions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/Functions.cpp.i
+.PHONY : src/sources/Functions.cpp.i
 
-src/sources/zh_number.s: src/sources/zh_number.cpp.s
-.PHONY : src/sources/zh_number.s
+src/sources/Functions.s: src/sources/Functions.cpp.s
+.PHONY : src/sources/Functions.s
 
 # target to generate assembly for a file
-src/sources/zh_number.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/zh_number.cpp.s
-.PHONY : src/sources/zh_number.cpp.s
+src/sources/Functions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/Functions.cpp.s
+.PHONY : src/sources/Functions.cpp.s
+
+src/sources/Number.o: src/sources/Number.cpp.o
+.PHONY : src/sources/Number.o
+
+# target to build an object file
+src/sources/Number.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/Number.cpp.o
+.PHONY : src/sources/Number.cpp.o
+
+src/sources/Number.i: src/sources/Number.cpp.i
+.PHONY : src/sources/Number.i
+
+# target to preprocess a source file
+src/sources/Number.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/Number.cpp.i
+.PHONY : src/sources/Number.cpp.i
+
+src/sources/Number.s: src/sources/Number.cpp.s
+.PHONY : src/sources/Number.s
+
+# target to generate assembly for a file
+src/sources/Number.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project2.dir/build.make CMakeFiles/project2.dir/src/sources/Number.cpp.s
+.PHONY : src/sources/Number.cpp.s
 
 # Help Target
 help:
@@ -213,12 +237,15 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/sources/functions.o"
-	@echo "... src/sources/functions.i"
-	@echo "... src/sources/functions.s"
-	@echo "... src/sources/zh_number.o"
-	@echo "... src/sources/zh_number.i"
-	@echo "... src/sources/zh_number.s"
+	@echo "... src/sources/Executor.o"
+	@echo "... src/sources/Executor.i"
+	@echo "... src/sources/Executor.s"
+	@echo "... src/sources/Functions.o"
+	@echo "... src/sources/Functions.i"
+	@echo "... src/sources/Functions.s"
+	@echo "... src/sources/Number.o"
+	@echo "... src/sources/Number.i"
+	@echo "... src/sources/Number.s"
 .PHONY : help
 
 

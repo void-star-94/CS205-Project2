@@ -8,105 +8,109 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug"/>
+				<Option working_dir="/home/zhzhzh/ClionProjects/project2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="project2">
-				<Option output="/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/project2" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug"/>
+				<Option output="/home/zhzhzh/ClionProjects/project2/cmake-build-debug/project2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/zhzhzh/ClionProjects/project2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/mnt/c/Users/45098/CLionProjects/project2/src/headers"/>
-					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/../../../../include/c++/13.0.0"/>
-					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/../../../../include/c++/13.0.0/x86_64-linux-gnu"/>
-					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/../../../../include/c++/13.0.0/backward"/>
-					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include"/>
+					<Add directory="/home/zhzhzh/ClionProjects/project2/src/headers"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-pc-linux-gnu/13.0.0/../../../../include/c++/13.0.0"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-pc-linux-gnu/13.0.0/../../../../include/c++/13.0.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-pc-linux-gnu/13.0.0/../../../../include/c++/13.0.0/backward"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-pc-linux-gnu/13.0.0/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include-fixed/x86_64-linux-gnu"/>
-					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include-fixed"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-pc-linux-gnu/13.0.0/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 project2"/>
-					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 project2"/>
+					<CompileFile command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="project2/fast">
-				<Option output="/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/project2" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug"/>
+				<Option output="/home/zhzhzh/ClionProjects/project2/cmake-build-debug/project2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/zhzhzh/ClionProjects/project2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/mnt/c/Users/45098/CLionProjects/project2/src/headers"/>
-					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/../../../../include/c++/13.0.0"/>
-					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/../../../../include/c++/13.0.0/x86_64-linux-gnu"/>
-					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/../../../../include/c++/13.0.0/backward"/>
-					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include"/>
+					<Add directory="/home/zhzhzh/ClionProjects/project2/src/headers"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-pc-linux-gnu/13.0.0/../../../../include/c++/13.0.0"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-pc-linux-gnu/13.0.0/../../../../include/c++/13.0.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-pc-linux-gnu/13.0.0/../../../../include/c++/13.0.0/backward"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-pc-linux-gnu/13.0.0/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include-fixed/x86_64-linux-gnu"/>
-					<Add directory="/usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include-fixed"/>
+					<Add directory="/usr/local/lib/gcc/x86_64-pc-linux-gnu/13.0.0/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 project2/fast"/>
-					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 project2/fast"/>
+					<CompileFile command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug"/>
+				<Option working_dir="/home/zhzhzh/ClionProjects/project2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug"/>
+				<Option working_dir="/home/zhzhzh/ClionProjects/project2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/c/Users/45098/CLionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j20 -f &quot;/home/zhzhzh/ClionProjects/project2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/mnt/c/Users/45098/CLionProjects/project2/src/headers/functions.h">
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/headers/Defines.h">
 			<Option target="project2"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/45098/CLionProjects/project2/src/headers/input.h">
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/headers/Executor.h">
 			<Option target="project2"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/45098/CLionProjects/project2/src/headers/zh_number.h">
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/headers/Functions.h">
 			<Option target="project2"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/45098/CLionProjects/project2/src/main.cpp">
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/headers/Number.h">
 			<Option target="project2"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/45098/CLionProjects/project2/src/sources/functions.cpp">
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/main.cpp">
 			<Option target="project2"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/45098/CLionProjects/project2/src/sources/zh_number.cpp">
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/sources/Executor.cpp">
 			<Option target="project2"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/45098/CLionProjects/project2/CMakeLists.txt">
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/sources/Functions.cpp">
+			<Option target="project2"/>
+		</Unit>
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/sources/Number.cpp">
+			<Option target="project2"/>
+		</Unit>
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

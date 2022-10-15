@@ -1,16 +1,16 @@
 CMakeFiles/project2.dir/src/sources/zh_number.cpp.o: \
- /mnt/c/Users/45098/CLionProjects/project2/src/sources/zh_number.cpp \
+ /home/zhzhzh/ClionProjects/project2/src/sources/zh_number.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/45098/CLionProjects/project2/src/headers/zh_number.h \
+ /home/zhzhzh/ClionProjects/project2/src/headers/zh_number.h \
  /usr/local/include/c++/13.0.0/utility \
- /usr/local/include/c++/13.0.0/x86_64-linux-gnu/bits/c++config.h \
- /usr/local/include/c++/13.0.0/x86_64-linux-gnu/bits/os_defines.h \
+ /usr/local/include/c++/13.0.0/x86_64-pc-linux-gnu/bits/c++config.h \
+ /usr/local/include/c++/13.0.0/x86_64-pc-linux-gnu/bits/os_defines.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/long-double.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/local/include/c++/13.0.0/x86_64-linux-gnu/bits/cpu_defines.h \
+ /usr/local/include/c++/13.0.0/x86_64-pc-linux-gnu/bits/cpu_defines.h \
  /usr/local/include/c++/13.0.0/pstl/pstl_config.h \
  /usr/local/include/c++/13.0.0/bits/stl_relops.h \
  /usr/local/include/c++/13.0.0/bits/stl_pair.h \
@@ -24,7 +24,6 @@ CMakeFiles/project2.dir/src/sources/zh_number.cpp.o: \
  /usr/local/include/c++/13.0.0/bits/cpp_type_traits.h \
  /usr/local/include/c++/13.0.0/ext/type_traits.h \
  /usr/local/include/c++/13.0.0/vector \
- /usr/local/include/c++/13.0.0/bits/requires_hosted.h \
  /usr/local/include/c++/13.0.0/bits/stl_algobase.h \
  /usr/local/include/c++/13.0.0/bits/functexcept.h \
  /usr/local/include/c++/13.0.0/bits/exception_defines.h \
@@ -42,7 +41,7 @@ CMakeFiles/project2.dir/src/sources/zh_number.cpp.o: \
  /usr/local/include/c++/13.0.0/debug/debug.h \
  /usr/local/include/c++/13.0.0/bits/predefined_ops.h \
  /usr/local/include/c++/13.0.0/bits/allocator.h \
- /usr/local/include/c++/13.0.0/x86_64-linux-gnu/bits/c++allocator.h \
+ /usr/local/include/c++/13.0.0/x86_64-pc-linux-gnu/bits/c++allocator.h \
  /usr/local/include/c++/13.0.0/bits/new_allocator.h \
  /usr/local/include/c++/13.0.0/bits/memoryfwd.h \
  /usr/local/include/c++/13.0.0/bits/stl_uninitialized.h \
@@ -60,12 +59,12 @@ CMakeFiles/project2.dir/src/sources/zh_number.cpp.o: \
  /usr/local/include/c++/13.0.0/bits/vector.tcc \
  /usr/local/include/c++/13.0.0/bits/memory_resource.h \
  /usr/local/include/c++/13.0.0/cstddef \
- /usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include/stddef.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/13.0.0/include/stddef.h \
  /usr/local/include/c++/13.0.0/bits/uses_allocator.h \
  /usr/local/include/c++/13.0.0/bits/uses_allocator_args.h \
  /usr/local/include/c++/13.0.0/tuple \
  /usr/local/include/c++/13.0.0/cstdint \
- /usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include/stdint.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/13.0.0/include/stdint.h \
  /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/x86_64-linux-gnu/bits/types.h \
@@ -81,9 +80,9 @@ CMakeFiles/project2.dir/src/sources/zh_number.cpp.o: \
  /usr/local/include/c++/13.0.0/bits/stringfwd.h \
  /usr/local/include/c++/13.0.0/bits/postypes.h \
  /usr/local/include/c++/13.0.0/cwchar /usr/include/wchar.h \
- /usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include-fixed/x86_64-linux-gnu/bits/floatn.h \
- /usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include-fixed/x86_64-linux-gnu/bits/floatn-common.h \
- /usr/local/lib/gcc/x86_64-linux-gnu/13.0.0/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/13.0.0/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
@@ -98,7 +97,7 @@ CMakeFiles/project2.dir/src/sources/zh_number.cpp.o: \
  /usr/local/include/c++/13.0.0/bits/nested_exception.h \
  /usr/local/include/c++/13.0.0/bits/char_traits.h \
  /usr/local/include/c++/13.0.0/bits/localefwd.h \
- /usr/local/include/c++/13.0.0/x86_64-linux-gnu/bits/c++locale.h \
+ /usr/local/include/c++/13.0.0/x86_64-pc-linux-gnu/bits/c++locale.h \
  /usr/local/include/c++/13.0.0/clocale /usr/include/locale.h \
  /usr/include/x86_64-linux-gnu/bits/locale.h \
  /usr/local/include/c++/13.0.0/cctype /usr/include/ctype.h \
@@ -106,8 +105,8 @@ CMakeFiles/project2.dir/src/sources/zh_number.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/endianness.h \
  /usr/local/include/c++/13.0.0/bits/ios_base.h \
  /usr/local/include/c++/13.0.0/ext/atomicity.h \
- /usr/local/include/c++/13.0.0/x86_64-linux-gnu/bits/gthr.h \
- /usr/local/include/c++/13.0.0/x86_64-linux-gnu/bits/gthr-default.h \
+ /usr/local/include/c++/13.0.0/x86_64-pc-linux-gnu/bits/gthr.h \
+ /usr/local/include/c++/13.0.0/x86_64-pc-linux-gnu/bits/gthr-default.h \
  /usr/include/pthread.h /usr/include/sched.h \
  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
@@ -128,7 +127,7 @@ CMakeFiles/project2.dir/src/sources/zh_number.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
- /usr/local/include/c++/13.0.0/x86_64-linux-gnu/bits/atomic_word.h \
+ /usr/local/include/c++/13.0.0/x86_64-pc-linux-gnu/bits/atomic_word.h \
  /usr/local/include/c++/13.0.0/bits/locale_classes.h \
  /usr/local/include/c++/13.0.0/string \
  /usr/local/include/c++/13.0.0/bits/ostream_insert.h \
@@ -168,7 +167,7 @@ CMakeFiles/project2.dir/src/sources/zh_number.cpp.o: \
  /usr/local/include/c++/13.0.0/bits/basic_string.tcc \
  /usr/local/include/c++/13.0.0/bits/locale_classes.tcc \
  /usr/local/include/c++/13.0.0/system_error \
- /usr/local/include/c++/13.0.0/x86_64-linux-gnu/bits/error_constants.h \
+ /usr/local/include/c++/13.0.0/x86_64-pc-linux-gnu/bits/error_constants.h \
  /usr/local/include/c++/13.0.0/stdexcept \
  /usr/local/include/c++/13.0.0/streambuf \
  /usr/local/include/c++/13.0.0/bits/streambuf.tcc \
@@ -176,9 +175,9 @@ CMakeFiles/project2.dir/src/sources/zh_number.cpp.o: \
  /usr/local/include/c++/13.0.0/bits/locale_facets.h \
  /usr/local/include/c++/13.0.0/cwctype /usr/include/wctype.h \
  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
- /usr/local/include/c++/13.0.0/x86_64-linux-gnu/bits/ctype_base.h \
+ /usr/local/include/c++/13.0.0/x86_64-pc-linux-gnu/bits/ctype_base.h \
  /usr/local/include/c++/13.0.0/bits/streambuf_iterator.h \
- /usr/local/include/c++/13.0.0/x86_64-linux-gnu/bits/ctype_inline.h \
+ /usr/local/include/c++/13.0.0/x86_64-pc-linux-gnu/bits/ctype_inline.h \
  /usr/local/include/c++/13.0.0/bits/locale_facets.tcc \
  /usr/local/include/c++/13.0.0/bits/basic_ios.tcc \
  /usr/local/include/c++/13.0.0/bits/ostream.tcc \
@@ -188,8 +187,8 @@ CMakeFiles/project2.dir/src/sources/zh_number.cpp.o: \
  /usr/local/include/c++/13.0.0/bits/stl_algo.h \
  /usr/local/include/c++/13.0.0/bits/algorithmfwd.h \
  /usr/local/include/c++/13.0.0/bits/stl_heap.h \
- /usr/local/include/c++/13.0.0/bits/uniform_int_dist.h \
  /usr/local/include/c++/13.0.0/bits/stl_tempbuf.h \
+ /usr/local/include/c++/13.0.0/bits/uniform_int_dist.h \
  /usr/local/include/c++/13.0.0/bits/ranges_algo.h \
  /usr/local/include/c++/13.0.0/bits/ranges_algobase.h \
  /usr/local/include/c++/13.0.0/bits/ranges_util.h \
@@ -222,4 +221,4 @@ CMakeFiles/project2.dir/src/sources/zh_number.cpp.o: \
  /usr/local/include/c++/13.0.0/tr1/riemann_zeta.tcc \
  /usr/local/include/c++/13.0.0/sstream \
  /usr/local/include/c++/13.0.0/bits/sstream.tcc \
- /mnt/c/Users/45098/CLionProjects/project2/src/headers/functions.h
+ /home/zhzhzh/ClionProjects/project2/src/headers/functions.h
