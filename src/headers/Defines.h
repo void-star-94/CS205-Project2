@@ -11,51 +11,120 @@
 #include <unordered_map>
 #include <set>
 
-class Number;
-
-//static std::unordered_map<std::string, Number> variables;
-
-using Block = std::vector<std::string>;
-
-enum class Expression {
-    Formula, Script, Command
-};
-
-struct Package {
-    Expression expr;
-    Block blk;
-};
-
-static std::vector<Block> program;
 using u8 = uint8_t;
 using u64 = uint64_t;
 using i64 = int64_t;
+
+enum class Symbol {
+    Number, Variable, Function,
+    Left_Bracket, Right_Bracket, Operator, Comma, Equal,//naive
+    Undefined
+};
+
+enum class Operator {
+    Plus, Minus, Multiply, Divide, Mod, Negative
+};
+
+struct Hint {
+    //[start, end]
+    u64 start;
+    u64 end;
+
+    bool operator<(const Hint &other) const { return start < other.start; }
+};
+
+struct Status {
+    std::string message;
+    std::string origin;
+    std::vector<Hint> hints;
+};
+
+
 const static std::string RED_BEGIN = "\033[31;1m";
 const static std::string RED_END = "\033[0m";
-const std::set<char> calculation = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', 'e',
-                                    '+', '-', '*', '/', '%', '^'};
+
+const static std::set<char> formula = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', 'e',
+                                       '+', '-', '*', '/', '%', '(', ')'};
+const static std::set<char> number = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', 'e'};
+const static std::set<char> decimal = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+const static std::set<char> not_command = {'+', '-', '*', '/', '%', '=', '(', ')', ','};
+const static std::set<char> operation = {'+', '-', '*', '/', '%'};
+const static std::set<char> number_start = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.',
+                                            '+', '-'};
+const static std::set<char> variable_start = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+                                              'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                                              'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+                                              'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+                                              '_'};
+const static std::set<char> variable = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+                                        'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                                        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+                                        'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+                                        '_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+const static std::set<char> legal = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+                                     'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                                     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+                                     'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+                                     '_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                                     '+', '-', '*', '/', '%', '=', '(', ')', ',', ' ', '.'};
+
 namespace Error {
     const static std::string ILLEGAL_NUMBER = "illegal number: ";
     const static std::string ILLEGAL_CHARACTER = "illegal character: ";
-    const static std::string ILLEGAL_VARIABLE_NAME = "illegal variable name: ";
+    const static std::string ILLEGAL_FUNCTION_NAME = "illegal function name: ";
+    const static std::string ILLEGAL_ASSIGN = "illegal assign statement: ";
     const static std::string MULTIPLE_DOTS = "multiple dots: ";
     const static std::string MULTIPLE_POWERS = "multiple powers: ";
-    const static std::string UNSUPPORTED_FUNCTION = "unsupported function: ";
+    const static std::string MULTIPLE_EQUALS = "one line can only have one assign statement: ";
+    const static std::string ASSIGN_VARIABLE_EMPTY = "you need a variable before assign expression: ";
+    const static std::string ASSIGN_EXPR_EMPTY = "you need an expression: ";
+    const static std::string ASSIGN_NOT_VARIABLE = "you need to assign a variable: ";
     const static std::string UNSUPPORTED_INPUT = "unsupported input: ";
     const static std::string ILLEGAL_FUNCTION_INPUT = "illegal function input: ";
     const static std::string BRACKETS_MISMATCH = "brackets mismatch: ";
+    const static std::string BRACKETS_EMPTY = "brackets body empty: ";
     const static std::string UNDEFINED_VARIABLE = "undefined variable: ";
     const static std::string DIVIDED_BY_ZERO = "divided by zero: ";
     const static std::string ILLEGAL_COMMAND = "illegal command: ";
+//    const static std::string ILLEGAL_INPUT = "please input a formula or command: ";
+//    const static std::string ILLEGAL_VARIABLE_NAME = "illegal variable name: ";
 }
+
 namespace Command {
     const static std::string HELP = "help";
-    const static std::string PRECISION = "precision";
     const static std::string QUIT = "quit";
     const static std::string SHOW = "show";
     const static std::string CLEAR = "clear";
+    const static std::string CLC = "clc";
     const static std::string HISTORY = "history";
+    const static std::string VARIABLES = "variables";
     const static std::set<std::string> commands =
-            {HELP, PRECISION, QUIT, SHOW, CLEAR, HISTORY};
+            {HELP, QUIT, SHOW, CLEAR, CLC, HISTORY, VARIABLES};
 }
+
+const static std::string help = "this cal";
+const static std::string history_empty = "no history";
+const static std::string variable_empty = "no variable";
+
+const static std::vector<std::string> function_names =
+        {
+                "floor"
+                "ceil"
+                "round"
+                "sqrt"
+                "exp"
+                "log"
+                "log10"
+                "sin"
+                "cos"
+                "tan"
+                "asin"
+                "acos"
+                "atan"
+                "abs"
+                "power"
+                "max"
+                "min"
+        };
 #endif //PROJECT2_DEFINES_H

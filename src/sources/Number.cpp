@@ -1,12 +1,13 @@
 //
-// Created by zhzhzh on 2022/10/4.
+// Created by void-star on 2022/10/4.
 //
 #include "Number.h"
 #include <algorithm>
 #include <stdexcept>
 #include <complex>
 #include "Functions.h"
-
+uint64_t Number::precision = 32;
+Print_Tag Number::tag = Print_Tag::Scientific;
 
 Number zero = {POSITIVE,
                std::vector<u8>(), 0};

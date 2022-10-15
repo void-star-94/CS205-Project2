@@ -1,1 +1,0 @@
-/usr/bin/g++  -lpthread -lncurses -g CMakeFiles/project2.dir/src/main.cpp.o CMakeFiles/project2.dir/src/sources/Executor.cpp.o CMakeFiles/project2.dir/src/sources/Functions.cpp.o CMakeFiles/project2.dir/src/sources/Number.cpp.o -o project2 

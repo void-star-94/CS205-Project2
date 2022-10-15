@@ -1,5 +1,5 @@
 //
-// Created by zhzhzh on 2022/10/4.
+// Created by void-star on 2022/10/4.
 //
 
 #ifndef PROJECT2_NUMBER_H
