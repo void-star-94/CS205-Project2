@@ -86,25 +86,28 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/headers/Errors.h">
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/headers/Defines.h">
 			<Option target="project2"/>
 		</Unit>
-		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/headers/functions.h">
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/headers/Executor.h">
 			<Option target="project2"/>
 		</Unit>
-		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/headers/input.h">
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/headers/Functions.h">
 			<Option target="project2"/>
 		</Unit>
-		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/headers/zh_number.h">
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/headers/Number.h">
 			<Option target="project2"/>
 		</Unit>
 		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/main.cpp">
 			<Option target="project2"/>
 		</Unit>
-		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/sources/functions.cpp">
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/sources/Executor.cpp">
 			<Option target="project2"/>
 		</Unit>
-		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/sources/zh_number.cpp">
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/sources/Functions.cpp">
+			<Option target="project2"/>
+		</Unit>
+		<Unit filename="/home/zhzhzh/ClionProjects/project2/src/sources/Number.cpp">
 			<Option target="project2"/>
 		</Unit>
 		<Unit filename="/home/zhzhzh/ClionProjects/project2/CMakeLists.txt">

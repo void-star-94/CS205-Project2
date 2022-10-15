@@ -5,8 +5,8 @@
 #ifndef PROJECT2_FUNCTIONS_H
 #define PROJECT2_FUNCTIONS_H
 
-class zh_number;
+class Number;
 
-zh_number floor(const zh_number &);
+Number floor(const Number &);
 
 #endif //PROJECT2_FUNCTIONS_H

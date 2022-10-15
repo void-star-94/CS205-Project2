@@ -1,10 +1,12 @@
 file(REMOVE_RECURSE
   "CMakeFiles/project2.dir/src/main.cpp.o"
   "CMakeFiles/project2.dir/src/main.cpp.o.d"
-  "CMakeFiles/project2.dir/src/sources/functions.cpp.o"
-  "CMakeFiles/project2.dir/src/sources/functions.cpp.o.d"
-  "CMakeFiles/project2.dir/src/sources/zh_number.cpp.o"
-  "CMakeFiles/project2.dir/src/sources/zh_number.cpp.o.d"
+  "CMakeFiles/project2.dir/src/sources/Executor.cpp.o"
+  "CMakeFiles/project2.dir/src/sources/Executor.cpp.o.d"
+  "CMakeFiles/project2.dir/src/sources/Functions.cpp.o"
+  "CMakeFiles/project2.dir/src/sources/Functions.cpp.o.d"
+  "CMakeFiles/project2.dir/src/sources/Number.cpp.o"
+  "CMakeFiles/project2.dir/src/sources/Number.cpp.o.d"
   "project2"
   "project2.pdb"
 )

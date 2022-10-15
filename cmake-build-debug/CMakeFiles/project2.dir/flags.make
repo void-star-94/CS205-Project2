@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/zhzhzh/ClionProjects/project2/src/headers
 
-CXX_FLAGS = -g -fdiagnostics-color=always -std=gnu++20
+CXX_FLAGS =  -lpthread -lncurses -g -fdiagnostics-color=always -std=gnu++20
 
