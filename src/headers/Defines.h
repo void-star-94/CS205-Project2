@@ -29,7 +29,6 @@ struct Hint {
     //[start, end]
     u64 start;
     u64 end;
-
     bool operator<(const Hint &other) const { return start < other.start; }
 };
 
@@ -43,24 +42,10 @@ struct Status {
 const static std::string RED_BEGIN = "\033[31;1m";
 const static std::string RED_END = "\033[0m";
 
-const static std::set<char> formula = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', 'e',
-                                       '+', '-', '*', '/', '%', '(', ')'};
 const static std::set<char> number = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', 'e'};
-const static std::set<char> decimal = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
 const static std::set<char> not_command = {'+', '-', '*', '/', '%', '=', '(', ')', ','};
-const static std::set<char> operation = {'+', '-', '*', '/', '%'};
-const static std::set<char> number_start = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.',
-                                            '+', '-'};
-const static std::set<char> variable_start = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-                                              'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-                                              'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-                                              'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-                                              '_'};
-const static std::set<char> variable = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-                                        'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-                                        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-                                        'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-                                        '_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
 
 const static std::set<char> legal = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
                                      'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
@@ -89,21 +74,18 @@ namespace Error {
     const static std::string FLOAT_MOD = "mod operation does not support floating point number: ";
     const static std::string ILLEGAL_COMMAND = "illegal command: ";
     const static std::string SYNTAX_ERROR = "syntax error: ";
-//    const static std::string ILLEGAL_VARIABLE_NAME = "illegal variable name: ";
 }
 
 namespace Command {
-    const static std::string HELP = "help";
     const static std::string QUIT = "quit";
     const static std::string CLEAR = "clear";
     const static std::string CLC = "clc";
     const static std::string HISTORY = "history";
     const static std::string VARIABLES = "variables";
     const static std::set<std::string> commands =
-            {HELP, QUIT, CLEAR, CLC, HISTORY, VARIABLES};
+            {QUIT, CLEAR, CLC, HISTORY, VARIABLES};
 }
 
-const static std::string help = "this cal";
 const static std::string history_empty = "no history";
 const static std::string variable_empty = "no variable";
 

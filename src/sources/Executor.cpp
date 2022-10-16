@@ -159,10 +159,6 @@ namespace void_star {
 
     inline bool process_command(Status &status) {
         auto &cmd = status.origin;
-        if (cmd == Command::HELP) {
-            print(help);
-            return true;
-        }
         if (cmd == Command::QUIT) {
             exit(EXIT_SUCCESS);
         }
@@ -684,11 +680,11 @@ namespace void_star {
                         if (tmp_l.value.power < 0 || tmp_r.value.power < 0) {
                             status.message = Error::FLOAT_MOD;
                             status.hints.clear();
-                            if(tmp_l.value.power < 0){
+                            if (tmp_l.value.power < 0) {
                                 status.hints.push_back({get_loc(status.origin, tmp_l.content),
                                                         get_loc(status.origin, tmp_l.content)});
                             }
-                            if(tmp_r.value.power < 0){
+                            if (tmp_r.value.power < 0) {
                                 status.hints.push_back({get_loc(status.origin, tmp_r.content),
                                                         get_loc(status.origin, tmp_r.content)});
                             }
@@ -788,10 +784,10 @@ namespace void_star {
             variables[std::string(list[0].content)] = num;
             history.push_back(status.origin);
         } else {
-            history.push_back(status.origin + "\n");
+            history.push_back(status.origin + ": ");
             std::stringstream ss;
             std::cout << num << "\n";
-            ss << num << "\n";
+            ss << num;
             history.push_back(ss.str());
         }
         return true;
