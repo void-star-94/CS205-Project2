@@ -7,73 +7,79 @@
 
 #include "Defines.h"
 #include <iostream>
+#include <limits>
 
+namespace void_star {
 #define POSITIVE true
 #define NEGATIVE false
-enum class Print_Tag {
-    Scientific,
-    Fractional,
-    Decimal
-};
+    enum class Print_Tag {
+        Scientific,
+        Fractional,
+        Decimal
+    };
 
 
-class Number {
-public:
-    static size_t precision;
-    static Print_Tag tag;
-    mutable bool sign{POSITIVE};
-    std::vector<u8> nums;
-    i64 power{0};
+    class Number {
+    public:
+        static size_t precision;
+        static Print_Tag tag;
+        mutable bool sign{POSITIVE};
+        std::vector<u8> nums;
+        i64 power{0};
 
-    Number(bool s, std::vector<u8> n, i64 p) : sign(s), nums(std::move(n)), power(p) {}
+        Number(bool s, std::vector<u8> n, i64 p) : sign(s), nums(std::move(n)), power(p) {}
 
-    Number();
+        Number();
 
-    explicit Number(u64 num, bool s = POSITIVE, i64 power_ = 0);
+        explicit Number(const std::string_view &);
 
-    std::strong_ordering operator<=>(const Number &other) const;
+        explicit Number(u64 num, bool s = POSITIVE, i64 power_ = 0);
 
-    bool operator==(const Number &other) const;
+        std::strong_ordering operator<=>(const Number &other) const;
 
-    Number operator+(const Number &other) const;
+        bool operator==(const Number &other) const;
 
-    Number operator-(const Number &other) const;
+        Number operator+(const Number &other) const;
 
-    Number operator*(const Number &other) const;
+        Number operator-(const Number &other) const;
 
-    Number operator/(const Number &other) const;
+        Number operator*(const Number &other) const;
 
-    std::pair<Number, Number> operator%(const Number &other) const;
+        Number operator/(const Number &other) const;
 
-    void operator+=(const Number &other);
+        std::pair<Number, Number> operator%(const Number &other) const;
 
-    void operator-=(const Number &other);
+        void operator+=(const Number &other);
 
-    void operator*=(const Number &other);
+        void operator-=(const Number &other);
 
-    void operator/=(const Number &other);
+        void operator*=(const Number &other);
 
-    void operator%=(const Number &other);
+        void operator/=(const Number &other);
 
-    Number &operator++();
+        void operator%=(const Number &other);
 
-    Number &operator--();
+        Number &operator++();
 
-    friend std::ostream &operator<<(std::ostream &os, const Number &n);
+        Number &operator--();
 
-    [[nodiscard]] bool isZero() const;
+        friend std::ostream &operator<<(std::ostream &os, const Number &n);
 
-    void squeeze();
+        [[nodiscard]] bool isZero() const;
 
-    void pad_zeros(i64 count);
+        void squeeze();
 
-    bool degenerate() const;
+        void pad_zeros(i64 count);
 
-    i64 to_int() const;
+        bool degenerate() const;
 
-    bool is_pow_10() const;
+        i64 to_int() const;
 
-};
+        bool is_pow_10() const;
 
+    };
 
+    static const Number illegal = Number(1, POSITIVE, std::numeric_limits<i64>::max());
+
+}
 #endif //PROJECT2_NUMBER_H

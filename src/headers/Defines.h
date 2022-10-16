@@ -22,7 +22,7 @@ enum class Symbol {
 };
 
 enum class Operator {
-    Plus, Minus, Multiply, Divide, Mod, Negative
+    Plus, Minus, Multiply, Divide, Mod, Negative, Positive
 };
 
 struct Hint {
@@ -73,6 +73,7 @@ namespace Error {
     const static std::string ILLEGAL_NUMBER = "illegal number: ";
     const static std::string ILLEGAL_CHARACTER = "illegal character: ";
     const static std::string ILLEGAL_FUNCTION_NAME = "illegal function name: ";
+    const static std::string ILLEGAL_VARIABLE_NAME = "variable name conflicts with command: ";
     const static std::string ILLEGAL_ASSIGN = "illegal assign statement: ";
     const static std::string MULTIPLE_DOTS = "multiple dots: ";
     const static std::string MULTIPLE_POWERS = "multiple powers: ";
@@ -80,27 +81,26 @@ namespace Error {
     const static std::string ASSIGN_VARIABLE_EMPTY = "you need a variable before assign expression: ";
     const static std::string ASSIGN_EXPR_EMPTY = "you need an expression: ";
     const static std::string ASSIGN_NOT_VARIABLE = "you need to assign a variable: ";
-    const static std::string UNSUPPORTED_INPUT = "unsupported input: ";
     const static std::string ILLEGAL_FUNCTION_INPUT = "illegal function input: ";
     const static std::string BRACKETS_MISMATCH = "brackets mismatch: ";
-    const static std::string BRACKETS_EMPTY = "brackets body empty: ";
+    const static std::string ILLEGAL_BRACKETS_PAIR = "there must be function, number or variable between brackets: ";
     const static std::string UNDEFINED_VARIABLE = "undefined variable: ";
     const static std::string DIVIDED_BY_ZERO = "divided by zero: ";
+    const static std::string FLOAT_MOD = "mod operation does not support floating point number: ";
     const static std::string ILLEGAL_COMMAND = "illegal command: ";
-//    const static std::string ILLEGAL_INPUT = "please input a formula or command: ";
+    const static std::string SYNTAX_ERROR = "syntax error: ";
 //    const static std::string ILLEGAL_VARIABLE_NAME = "illegal variable name: ";
 }
 
 namespace Command {
     const static std::string HELP = "help";
     const static std::string QUIT = "quit";
-    const static std::string SHOW = "show";
     const static std::string CLEAR = "clear";
     const static std::string CLC = "clc";
     const static std::string HISTORY = "history";
     const static std::string VARIABLES = "variables";
     const static std::set<std::string> commands =
-            {HELP, QUIT, SHOW, CLEAR, CLC, HISTORY, VARIABLES};
+            {HELP, QUIT, CLEAR, CLC, HISTORY, VARIABLES};
 }
 
 const static std::string help = "this cal";
@@ -109,22 +109,19 @@ const static std::string variable_empty = "no variable";
 
 const static std::vector<std::string> function_names =
         {
-                "floor"
-                "ceil"
-                "round"
-                "sqrt"
-                "exp"
-                "log"
-                "log10"
-                "sin"
-                "cos"
-                "tan"
-                "asin"
-                "acos"
-                "atan"
-                "abs"
-                "power"
-                "max"
+                "floor",
+                "ceil",
+                "round",
+                "sqrt",
+                "exp",
+                "log",
+                "log10",
+                "sin",
+                "cos",
+                "tan",
+                "abs",
+                "power",
+                "max",
                 "min"
         };
 #endif //PROJECT2_DEFINES_H

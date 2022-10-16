@@ -7,11 +7,12 @@
 
 #include "Defines.h"
 
-Status get_input();
+namespace void_star {
+    Status get_input();
 
-bool process_input(Status &);
+    bool process_input(Status &);
 
-void print_error(Status &);
-
+    void print_error(Status &);
+}
 
 #endif //PROJECT2_EXECUTOR_H
